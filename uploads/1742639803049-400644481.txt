@@ -1,0 +1,52 @@
+完成pr
+命令：
+git add .
+git config --global user.name "wtyv3164"
+git config --global user.email "2980419362@qq.com"
+
+git add .
+git commit -m “完成task1” 
+git push
+
+
+
+使用git将项目上传到github
+1.首先查看git版本，查看是否安装：git version
+2.设置自己的昵称和邮箱：
+git config --global user.name "wtyv3164"
+git config --global user.email "2980419362@qq.com"
+3.在当前目录初始化，创建一个.git隐藏文件夹：git init   (会保存文件的每个git版本记录和变化）
+4.使用git add .  把文件加进git版本控制系统中     （到这一步只是暂时保存还不会保存提交记录）
+5.将暂时的提交改成一个固定的版本：git commit -m ""
+6.查看提交信息：git log
+
+要想回退到哪次提交时的状态：git reset --hard (加上commit的id)  注意，回退后会损失后面的记录，所以回退最好是最近一次即可
+git reset --hard 49e006b5037e404ad5f4bb827c492ea051cfee87
+
+1.git branch -M main
+2.push到github中，先在github中创建一个代码仓库，然后将该仓库的网址拷贝下来
+eg:   git remote add origin https://github.com/wtyv3164/Web3_tutotial.git
+然后可以查看版本： git remote -v
+获取状态： git status (第一次获取是红色的）
+进行添加文件：git add .  
+将暂时的提交改成一个固定的版本：git commit -m ""
+再次获取状态：git status (变绿色了）
+第一次push还要你执行一个命令，eg：git push --set-upstream origin main           master/main   //现在主流是用main
+然后使用push上传到github中： git push
+
+
+
+
+//适用于团队合作马，最后使用merge合并所有分支
+可以使用branch创建分支
+eg:  git branch 0.2
+使用 git checkout 0.2 随时切换分支
+
+
+列出当前 Git 的全局配置信息：git config --global -l
+添加 HTTP 和 HTTPS 代理：
+git config --global http.proxy http://127.0.0.1:10809
+git config --global https.proxy http://127.0.0.1:10809
+取消添加的代理：
+git config --global --unset http.proxy
+git config --global --unset https.proxy

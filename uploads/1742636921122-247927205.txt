@@ -1,0 +1,102 @@
+===生成脱机镜像====
+docker save -o mongo.tar mongo
+docker save -o redis.tar redis
+docker save -o rabbitmq.tar rabbitmq
+docker save -o jaegertracing-allinone166.tar jaegertracing/all-in-one
+====加载镜像====
+docker load -i mongo.tar
+docker load -i redis.tar
+docker load -i rabbitmq.tar
+docker load -i  jaegertracing-allinone166.tar
+====启动容器====
+docker run --name mongodb -p 37017:27017 -d mongo
+docker run --name redis -p 7379:6379 -d redis
+docker run --name jaeger   -e COLLECTOR_OTLP_ENABLED=true   -p 16686:16686   -p 4317:4317   -p 4318:4318   -d jaegertracing/all-in-one:1.66.0
+docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 -d rabbitmq
+--------------
+docker image 常用命令
+------------
+查看镜像列表：docker images
+
+拉取镜像：
+docker pull <image-name>:<tag>
+如 docker pull ubuntu:latest
+
+构建镜像：
+docker build -t <image-name>:<tag> <path-to-dockerfile>
+如 docker build -t my-app:1.0  .
+
+删除镜像：
+docker rmi <image-name> 或 docker rmi <image-id>
+如 docker rmi my-app:1.0
+
+查看镜像的详细信息：
+docker inspect <image-name> 或 docker inspect <image-id>
+
+标记（tag）镜像：
+docker tag <source-image> <target-image>
+如 docker tag my-app:1.0 myrepo/my-app:1.0
+
+查看镜像历史记录：
+docker history <image-name>
+
+
+--------------
+docker 容器 常用命令
+------------
+1. 查看容器列表
+查看所有运行中的容器：
+docker ps
+查看所有容器（包括停止的容器）：
+docker ps -a
+
+2. 启动容器
+
+☆从镜像启动一个新容器：
+docker run <options> <image-name>
+例如，运行一个名为ubuntu的容器：
+docker run -it ubuntu
+-it表示交互模式启动容器并附加终端。
+
+☆在后台启动容器（分离模式）：
+docker run -d <image-name>
+例如，后台运行容器：
+docker run -d -p 8080:80 nginx
+
+
+3. 停止容器
+停止正在运行的容器：
+docker stop <container-id 或 container-name>
+例如，停止容器：
+docker stop my-container
+
+4. 重启容器
+重启容器：
+docker restart <container-id 或 container-name>
+
+
+5. 删除容器
+☆删除停止的容器：
+docker rm <container-id 或 container-name>
+例如：
+docker rm my-container
+
+☆删除多个容器：
+docker rm <container-id1> <container-id2> ...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
