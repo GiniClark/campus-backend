@@ -1,0 +1,4 @@
+# 忽略依赖目录
+node_modules/
+# 忽略上传文件
+uploads/
